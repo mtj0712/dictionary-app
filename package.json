@@ -5,12 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc && vite build",
     "preview": "vite preview",
-    "format": "prettier --write \"src/**/*.js\" --config \".prettierrc.json\""
+    "format": "prettier --write \"src/**/*.ts\" --config \".prettierrc.json\"",
+    "type-check": "tsc --noEmit"
   },
   "devDependencies": {
     "prettier": "3.8.1",
+    "typescript": "^5.9.3",
     "vite": "^7.2.4"
   },
   "dependencies": {
