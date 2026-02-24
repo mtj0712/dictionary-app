@@ -196,8 +196,8 @@ const displayError = (message: string): void => {
   definitionsSection.appendChild(error);
 };
 
-const inputWord = document.getElementById("input");
-const submitBtn = document.getElementById("submit");
+const inputWord = document.getElementById("input") as HTMLInputElement;
+const submitBtn = document.getElementById("submit") as HTMLButtonElement;
 submitBtn.addEventListener("click", async () => {
   const word = inputWord.value.trim();
   if (!word) return;
