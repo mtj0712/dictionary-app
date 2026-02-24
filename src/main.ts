@@ -1,5 +1,30 @@
 import "./style.css";
 
+type Definition = {
+  definition: string;
+  example?: string;
+  synonyms?: string[];
+  antonyms?: string[];
+};
+
+type Meaning = {
+  partOfSpeech: string;
+  definitions: Definition[];
+};
+
+type Phonetic = {
+  text?: string;
+  audio?: string;
+};
+
+type DictionaryAPIResponse = {
+  word: string;
+  phonetic?: string;
+  phonetics: Phonetic[];
+  origin?: string;
+  meanings: Meaning[];
+};
+
 const dictionaryAPI = "https://api.dictionaryapi.dev/api/v2/entries/en_US/";
 
 const searchWord = async (word) => {
