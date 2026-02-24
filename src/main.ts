@@ -36,10 +36,11 @@ const searchWord = async (word: string): Promise<DictionaryAPIResponse[]> => {
   return data;
 };
 
-const extractFromEntry = (data, key) => {
-  if (data && Array.isArray(data)) {
-    return data[0][key];
-  }
+const extractFromEntry = <K extends keyof DictionaryAPIResponse>(
+  data: DictionaryAPIResponse[] | undefined,
+  key: K
+): DictionaryAPIResponse[K] | undefined => {
+  return data?.[0]?.[key] ?? undefined;
 };
 
 const clearDefinitionsSection = () => {
