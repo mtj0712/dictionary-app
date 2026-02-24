@@ -116,68 +116,68 @@ const displayWordDefinition = (meanings: Meaning[] | undefined): void => {
   });
 };
 
-const createPhoneticsSection = () => {
-  const phoneticsSection = document.getElementById("phonetics");
+const createPhoneticsSection = (): HTMLElement => {
+  const phoneticsSection: HTMLElement = document.getElementById("phonetics") as HTMLElement;
   phoneticsSection.innerHTML = "";
   phoneticsSection.classList.add("flex", "flex-col", "gap-4");
   return phoneticsSection;
 };
 
-const createPhoneticsHeading = () => {
-  const phoneticsHeading = document.createElement("h1");
+const createPhoneticsHeading = (): HTMLElement => {
+  const phoneticsHeading: HTMLElement = document.createElement("h1");
   phoneticsHeading.classList.add("text-2xl", "font-semibold");
   phoneticsHeading.innerText = "Phonetics";
   return phoneticsHeading;
 };
 
-const createPhoneticsDiv = () => {
-  const phoneticsDiv = document.createElement("div");
+const createPhoneticsDiv = (): HTMLElement => {
+  const phoneticsDiv: HTMLElement = document.createElement("div");
   phoneticsDiv.classList.add("bg-stone-100");
   return phoneticsDiv;
 };
 
-const createPhoneticElement = (text) => {
-  const phoneticText = document.createElement("p");
+const createPhoneticElement = (text: string): HTMLElement => {
+  const phoneticText: HTMLElement = document.createElement("p");
   phoneticText.classList.add("px-4", "py-3", "text-white", "bg-stone-700");
   phoneticText.innerText = text;
   return phoneticText;
 };
 
-const createAudioControl = () => {
-  const audioControl = document.createElement("audio");
-  audioControl.style = "width: 100%";
+const createAudioControl = (): HTMLAudioElement => {
+  const audioControl: HTMLAudioElement = document.createElement("audio");
+  audioControl.style.width = "100%";
   audioControl.setAttribute("controls", "true");
   return audioControl;
 };
 
-const createAudioSource = (audio) => {
-  const source = document.createElement("source");
+const createAudioSource = (audio: string): HTMLSourceElement => {
+  const source: HTMLSourceElement = document.createElement("source");
   source.setAttribute("src", audio);
   source.setAttribute("type", "audio/mpeg");
   return source;
 };
 
-const displayWordPhonetic = (phonetics) => {
-  const phoneticsSection = createPhoneticsSection();
+const displayWordPhonetic = (phonetics: Phonetic[] | undefined): void => {
+  const phoneticsSection: HTMLElement = createPhoneticsSection();
 
-  const phoneticsHeading = createPhoneticsHeading();
+  const phoneticsHeading: HTMLElement = createPhoneticsHeading();
   phoneticsSection.appendChild(phoneticsHeading);
 
-  phonetics.forEach((phonetic) => {
+  phonetics?.forEach((phonetic: Phonetic) => {
     const { text, audio } = phonetic;
 
     if (!text || !audio) return;
 
-    const phoneticsDiv = createPhoneticsDiv();
+    const phoneticsDiv: HTMLElement = createPhoneticsDiv();
     phoneticsSection.appendChild(phoneticsDiv);
 
-    const phoneticText = createPhoneticElement(text);
+    const phoneticText: HTMLElement = createPhoneticElement(text);
     phoneticsDiv.appendChild(phoneticText);
 
-    const audioControl = createAudioControl();
+    const audioControl: HTMLAudioElement = createAudioControl();
     phoneticsDiv.appendChild(audioControl);
 
-    const source = createAudioSource(audio);
+    const source: HTMLSourceElement = createAudioSource(audio);
     audioControl.appendChild(source);
 
     audioControl.appendChild(
@@ -188,9 +188,9 @@ const displayWordPhonetic = (phonetics) => {
   });
 };
 
-const displayError = (message) => {
-  const definitionsSection = clearDefinitionsSection();
-  const error = document.createElement("p");
+const displayError = (message: string): void => {
+  const definitionsSection: HTMLElement = clearDefinitionsSection();
+  const error: HTMLElement = document.createElement("p");
   error.classList.add("p-4", "text-red-600", "font-semibold");
   error.innerText = message;
   definitionsSection.appendChild(error);
