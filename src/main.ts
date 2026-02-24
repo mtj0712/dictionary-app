@@ -43,27 +43,27 @@ const extractFromEntry = <K extends keyof DictionaryAPIResponse>(
   return data?.[0]?.[key] ?? undefined;
 };
 
-const clearDefinitionsSection = () => {
-  const definitionsSection = document.getElementById("definitions");
+const clearDefinitionsSection = (): HTMLElement => {
+  const definitionsSection = document.getElementById("definitions") as HTMLElement;
   definitionsSection.innerHTML = "";
   return definitionsSection;
 };
 
-const createDefinitionsHeading = () => {
-  const definitionsHeading = document.createElement("h1");
+const createDefinitionsHeading = (): HTMLElement => {
+  const definitionsHeading: HTMLElement = document.createElement("h1");
   definitionsHeading.classList.add("text-2xl", "font-semibold");
   definitionsHeading.innerText = "Definitions";
   return definitionsHeading;
 };
 
-const createDefinitionDiv = () => {
+const createDefinitionDiv = (): HTMLElement => {
   const definitionDiv = document.createElement("div");
   definitionDiv.classList.add("bg-sky-50");
   return definitionDiv;
 };
 
-const createPartOfSpeechElement = (partOfSpeech) => {
-  const partOfSpeechName = document.createElement("p");
+const createPartOfSpeechElement = (partOfSpeech: string): HTMLElement => {
+  const partOfSpeechName: HTMLElement = document.createElement("p");
   partOfSpeechName.classList.add(
     "px-4",
     "py-2",
@@ -75,8 +75,8 @@ const createPartOfSpeechElement = (partOfSpeech) => {
   return partOfSpeechName;
 };
 
-const createDefinitionsList = () => {
-  const definitionsList = document.createElement("ul");
+const createDefinitionsList = (): HTMLElement => {
+  const definitionsList: HTMLElement = document.createElement("ul");
   definitionsList.classList.add(
     "p-2",
     "ml-6",
@@ -87,31 +87,31 @@ const createDefinitionsList = () => {
   return definitionsList;
 };
 
-const createDefinitionItem = (definitionObj) => {
-  const definitionsItem = document.createElement("li");
+const createDefinitionItem = (definitionObj: Definition): HTMLElement => {
+  const definitionsItem: HTMLElement = document.createElement("li");
   definitionsItem.innerText = definitionObj.definition;
   return definitionsItem;
 };
 
-const displayWordDefinition = (meanings) => {
-  const definitionsSection = clearDefinitionsSection();
+const displayWordDefinition = (meanings: Meaning[] | undefined): void => {
+  const definitionsSection: HTMLElement = clearDefinitionsSection();
 
-  const definitionsHeading = createDefinitionsHeading();
+  const definitionsHeading: HTMLElement = createDefinitionsHeading();
   definitionsSection.appendChild(definitionsHeading);
 
-  meanings.forEach((meaning) => {
-    const definitionDiv = createDefinitionDiv();
+  meanings?.forEach((meaning: Meaning) => {
+    const definitionDiv: HTMLElement = createDefinitionDiv();
     definitionsSection.appendChild(definitionDiv);
 
     const { partOfSpeech, definitions } = meaning;
 
-    const partOfSpeechName = createPartOfSpeechElement(partOfSpeech);
+    const partOfSpeechName: HTMLElement = createPartOfSpeechElement(partOfSpeech);
     definitionDiv.appendChild(partOfSpeechName);
 
-    const definitionsList = createDefinitionsList();
+    const definitionsList: HTMLElement = createDefinitionsList();
     definitionDiv.appendChild(definitionsList);
 
-    const definitionListItems = definitions.map(createDefinitionItem);
+    const definitionListItems: HTMLElement[] = definitions.map(createDefinitionItem);
     definitionsList.append(...definitionListItems);
   });
 };
